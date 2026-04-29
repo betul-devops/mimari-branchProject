@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define TABLE_SIZE 1024  // 2^10 gibi düşün
+#define TABLE_SIZE 1024 // 2^10 gibi düşün
 
 int table[1024];
 
@@ -13,8 +13,10 @@ void init_bimodal() {
     }
 }
 int get_index(char *address) {
-    unsigned int addr = (unsigned int)strtol(address, NULL, 16);
-    return addr % TABLE_SIZE;
+    // strtol yerine unsigned long kullanmak x86-64 adresleri için daha güvenlidir [cite: 39]
+    unsigned long addr = strtoul(address, NULL, 16); 
+    // 2 bit sağa kaydırarak çakışmaları azaltıyoruz 
+    return (addr >> 2) % TABLE_SIZE;
 }
 
 // prediction

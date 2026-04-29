@@ -1,5 +1,24 @@
-0x400501 T
-0x400501 T
-0x400501 N
-0x400501 T
-0x400501 N
+==2429== Lackey, an example Valgrind tool
+==2429== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote.
+==2429== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2429== Command: ./quick_sort
+==2429== 
+==2429== 
+==2429== Counted 1 call to main()
+==2429== 
+==2429== Jccs:
+==2429==   total:         56,745
+==2429==   taken:         29,572 (52%)
+==2429== 
+==2429== Executed:
+==2429==   SBs entered:   68,460
+==2429==   SBs completed: 49,811
+==2429==   guest instrs:  582,342
+==2429==   IRStmts:       3,300,140
+==2429== 
+==2429== Ratios:
+==2429==   guest instrs : SB entered  = 85 : 10
+==2429==        IRStmts : SB entered  = 482 : 10
+==2429==        IRStmts : guest instr = 56 : 10
+==2429== 
+==2429== Exit code:       0
