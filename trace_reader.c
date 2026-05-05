@@ -25,7 +25,7 @@ int read_trace(FILE *file, char *address, char *outcome) {
             // ZITLIK DÜZELTMESİ: 
             // Senin testlerinde != ile %75 başarı geldiği için mantığı burada tersine çeviriyoruz.
             // Böylece main.c içindeki kontrolü tekrar '==' yapabilirsin.
-            *outcome = (comma_pos[1] == '1') ? 'N' : 'T';
+            *outcome = (comma_pos[1] == '1') ? 'T' : 'N';
 
             // Adresi bulmak için virgülün solundaki boşluğa kadar olan kısmı al [cite: 21]
             char *start = comma_pos - 1;
