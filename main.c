@@ -43,7 +43,8 @@ void print_results(char *predictor_name,
     printf("==================================================\n");
 }
 
-void save_to_csv(char *predictor_name,
+void save_to_csv(char *workload_name,
+                 char *predictor_name,
                  double accuracy,
                  double miss_rate,
                  double cpi) {
@@ -56,11 +57,12 @@ void save_to_csv(char *predictor_name,
     }
 
     fprintf(csv,
-            "%s,%.2f,%.2f,%.3f\n",
-            predictor_name,
-            accuracy,
-            miss_rate,
-            cpi);
+        "%s,%s,%.2f,%.2f,%.3f\n",
+        workload_name,
+        predictor_name,
+        accuracy,
+        miss_rate,
+        cpi);
 
     fclose(csv);
 }
@@ -76,6 +78,7 @@ int main(int argc, char *argv[]) {
     // Trace dosyasını aç
     FILE *file = fopen(argv[1], "r");
 
+
     if (file == NULL) {
         printf("Hata: Trace dosyasi acilamadi!\n");
         return 1;
@@ -87,13 +90,15 @@ int main(int argc, char *argv[]) {
 
     PredictorType predictor;
     char predictor_name[50];
+    char workload_name[100];
+    strcpy(workload_name, argv[1]);
 
     // CSV header oluştur
     FILE *check = fopen("results.csv", "r");
         if (check == NULL) {
             FILE *csv = fopen("results.csv", "w");
             if (csv != NULL) {
-                fprintf(csv, "Predictor,Accuracy,MissRate,CPI\n");
+                fprintf(csv, "Workload,Predictor,Accuracy,MissRate,CPI\n");
                 fclose(csv);
             }
         }
@@ -192,6 +197,7 @@ int main(int argc, char *argv[]) {
         );
 
         save_to_csv(
+            workload_name,
             predictor_name,
             accuracy,
             misprediction_rate * 100,
