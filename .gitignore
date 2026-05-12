@@ -1,0 +1,6 @@
+simulator
+*.png
+results.csv
+loop_workload
+matrix_workload
+random_workload
